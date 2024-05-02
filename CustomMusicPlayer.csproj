@@ -62,7 +62,7 @@
       <HintPath>References\DOTween.Modules.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>F:\SPT-AKI\EscapeFromTarkov_Data\Managed\Newtonsoft.Json.dll</HintPath>
+      <HintPath>F:\SPT-AKI-DEV\EscapeFromTarkov_Data\Managed\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Oculus.AudioManager">
       <HintPath>References\Oculus.AudioManager.dll</HintPath>
@@ -99,6 +99,12 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetPath)" "C:\Games\EFT-SPT 3.8.0\BepInEx\plugins\CustomMusic\$(TargetName).dll"</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetPath)" "F:\SPT-AKI-DEV\BepInEx\plugins\CustomMusic\$(TargetName).dll"
+
+if $(ConfigurationName) == Debug (
+    copy "$(TargetDir)$(TargetName).pdb" "F:\SPT-AKI-DEV\BepInEx\plugins\CustomMusic\$(TargetName).pdb"
+) else (
+    del "F:\SPT-AKI-DEV\BepInEx\plugins\CustomMusic\$(TargetName).pdb"
+)</PostBuildEvent>
   </PropertyGroup>
 </Project>
